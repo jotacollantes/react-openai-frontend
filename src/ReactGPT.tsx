@@ -3,6 +3,7 @@ import { router } from './presentation/router/router';
 
 export const ReactGPT = () => {
   return (
+    //Mostrar el proveedor de rutas
     <RouterProvider router={ router } />
   )
 }

@@ -71,13 +71,16 @@ export const menuRoutes = [
 
 export const router = createBrowserRouter([
   {
+    //Path inicial
     path: "/",
+    //Elemento que se va a mostrar al inicio en este caso el layout
     element: <DashboardLayout />,
     children: [
       ...menuRoutes.map( route => ({
         path: route.to,
         element: route.component
       })),
+      //Ruta por defecto
       {
         path: '',
         element: <Navigate to={ menuRoutes[0].to } />

@@ -61,6 +61,7 @@ export const TextMessageBoxSelect = ({ onSendMessage, placeholder, disableCorrec
           >
             <option value=''>Seleccione</option>
             {
+              //Desestructuramos option
               options.map( ({ id, text }) => (
                 <option key={ id } value={ id }>{ text }</option>
               ))

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GptMessage, MyMessage, TextMessageBox, TypingLoader } from "../../components";
+import { GptMessage, MyMessage, TextMessageBox, TextMessageBoxFile, TextMessageBoxSelect, TypingLoader } from "../../components";
 
 interface Message {
   text: string;
@@ -18,6 +18,7 @@ export const OrthographyPage = () => {
   const handlePost = async( text: string ) => {
 
     setIsLoading(true);
+    //Tomamos y propagamos los mensajes anteriores y anadimos uno nuevo
     setMessages( (prev) => [...prev, { text: text, isGpt: false }] );
 
     //TODO: UseCase
@@ -32,9 +33,9 @@ export const OrthographyPage = () => {
 
 
   return (
-    <div className="chat-container">
-      <div className="chat-messages">
-        <div className="grid grid-cols-12 gap-y-2">
+    <div className="chat-container borderReference">
+      <div className="chat-messages borderReference">
+        <div className="grid grid-cols-12 gap-y-2 borderReference">
           {/* Bienvenida */}
           <GptMessage text="Hola, puedes escribir tu texto en español, y te ayudo con las correcciones" />
 
@@ -65,11 +66,22 @@ export const OrthographyPage = () => {
       </div>
 
 
-      <TextMessageBox 
-        onSendMessage={ handlePost }
+      {/* <TextMessageBox 
+        //onSendMessage={ handlePost }
+        onSendMessage={ (msg)=>handlePost(msg) }
         placeholder='Escribe aquí lo que deseas'
         disableCorrections
-      />
+      /> */}
+      {/* <TextMessageBoxFile 
+        //onSendMessage={ handlePost }
+        onSendMessage={ (msg)=>handlePost(msg) }
+        placeholder='Escribe aquí lo que deseas'
+      /> */}
+      <TextMessageBoxSelect 
+        //onSendMessage={ handlePost }
+        onSendMessage={(msg) => handlePost(msg)}
+        placeholder='Escribe aquí lo que deseas'
+        options={[{id:"1",text:"Hola"},{id:"2",text:"Mundo"}]}      />
 
     </div>
   );

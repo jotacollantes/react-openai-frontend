@@ -12,7 +12,7 @@ interface Props {
 export const TextMessageBoxFile = ({ onSendMessage, placeholder, disableCorrections = false, accept }: Props) => {
 
   const [message, setMessage] = useState('');
-
+  //state para almacenar el archivo seleccionado
   const [selectedFile, setSelectedFile] = useState<File | null>()
   const inputFileRef = useRef<HTMLInputElement>(null);
 
@@ -46,7 +46,8 @@ export const TextMessageBoxFile = ({ onSendMessage, placeholder, disableCorrecti
         <input 
           type="file" 
           ref={ inputFileRef }
-          accept={ accept } 
+          accept={ accept }
+          //Seleccionamos un solo archivo 
           onChange={ (e) => setSelectedFile( e.target.files?.item(0) ) }
           hidden
       />
@@ -79,6 +80,7 @@ export const TextMessageBoxFile = ({ onSendMessage, placeholder, disableCorrecti
       <div className="ml-4">
           <button 
             className="btn-primary"
+            //si no se selecciona un archivo no se va a poder enviar porque el boton aparecera deshabilitado
             disabled={ !selectedFile }
           >
             {
