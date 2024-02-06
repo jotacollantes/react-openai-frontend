@@ -25,8 +25,10 @@ export const OrthographyPage = () => {
 
     setIsLoading(true);
     setMessages( (prev) => [...prev, { text: text, isGpt: false }] );
-
+    //Llamamos al caso de uso.
     const { ok, errors, message, userScore } = await orthographyUseCase(text);
+
+    console.log('res', JSON.stringify({message,errors}, null, 2))
     if ( !ok ) {
       setMessages( (prev) => [...prev, { text: 'No se pudo realizar la corrección', isGpt: true }] );
     } else {
