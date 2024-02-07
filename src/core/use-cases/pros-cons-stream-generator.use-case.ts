@@ -1,4 +1,5 @@
 
+//Funcion generadora
 export async function* prosConsStreamGeneratorUseCase( prompt: string, abortSignal: AbortSignal )  {
 
   try {
@@ -9,6 +10,7 @@ export async function* prosConsStreamGeneratorUseCase( prompt: string, abortSign
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ prompt }),
+      //Para cuando el usuario envia otro propmt y se aborte el stream anterior
       signal: abortSignal,
     });
 

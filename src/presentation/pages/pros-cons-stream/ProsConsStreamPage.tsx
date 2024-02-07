@@ -12,7 +12,9 @@ interface Message {
 
 export const ProsConsStreamPage = () => {
 
+  //Creamos el hool abortController del tipo AbortController
   const abortController = useRef( new AbortController() );
+  //Creamos el hook isRunning que sirva como bandera y que el componente no sea renderizado
   const isRunning = useRef(false)
 
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +24,9 @@ export const ProsConsStreamPage = () => {
   const handlePost = async( text: string ) => {
 
     if ( isRunning.current ) {
+      //Si esta corriendo el stream y hay un nueva entrada en el chat, enviamos una senal de abort a la funcion controladora que a su vez ejecutara un abort signal en el fetch request para abortar el stream y hacer un nuevo fetch request que generara un nuevo stream
       abortController.current.abort();
+      //Es necesario crear un nuevo objeto abortController
       abortController.current = new AbortController();
     }
 
@@ -30,17 +34,21 @@ export const ProsConsStreamPage = () => {
 
     setIsLoading(true);
     isRunning.current = true;
-    setMessages( (prev) => [...prev, { text: text, isGpt: false }] );
+    //setMessages( (prev) => [...prev, { text: text, isGpt: false }] );
+    setMessages( [...messages, { text: text, isGpt: false }] );
 
     //TODO: UseCase
+    //El current manda la propiedad signal del objeto abortController
     const stream = prosConsStreamGeneratorUseCase( text, abortController.current.signal );
     setIsLoading(false);
 
-    setMessages( (messages) => [ ...messages, { text: '', isGpt: true  } ] );
+    //setMessages( (messages) => [ ...messages, { text: '', isGpt: true  } ] );
+    setMessages( [ ...messages, { text: '', isGpt: true  } ] );
 
     for await (const text of stream) {
       setMessages( (messages) => {
         const newMessages = [...messages];
+        //Actualizamos el ultimo mensaje
         newMessages[ newMessages.length - 1 ].text = text;
         return newMessages;
       });

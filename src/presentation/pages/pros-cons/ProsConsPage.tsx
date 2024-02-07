@@ -29,7 +29,9 @@ export const ProsConsPage = () => {
     if ( !ok ) return;
 
 
-    setMessages( (prev) => [...prev, { text: content, isGpt: true }] );
+    //setMessages( (prev) => [...prev, { text: content, isGpt: true }] );
+    //isGpt es true porque es openai el que respeonde
+    setMessages( [...messages, { text: content, isGpt: true }] );
 
 
   }

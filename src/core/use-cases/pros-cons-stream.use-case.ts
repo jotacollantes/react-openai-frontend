@@ -29,10 +29,12 @@ export const prosConsStreamUseCase = async( prompt: string ) => {
     // while( true ) {
     //   const { value, done } = await reader.read();
     //   if ( done ) {
+      ////Salimos del ciclo while
     //     break;
     //   }
 
     //   const decodedChunk = decoder.decode( value, { stream: true } );
+    //// Concatenamos el texto
     //   text += decodedChunk;
     //   console.log(text);
 
