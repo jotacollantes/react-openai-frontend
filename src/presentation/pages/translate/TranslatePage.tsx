@@ -28,14 +28,16 @@ export const TranslatePage = () => {
     setIsLoading(true);
 
     const newMessage = `Traduce: "${ text }" al idioma ${ selectedOption }`
-    setMessages((prev) => [...prev, { text: newMessage, isGpt: false }]);
+    
+    //setMessages((prev) => [...prev, { text: newMessage, isGpt: false }]);
+    setMessages([...messages, { text: newMessage, isGpt: false }]);
 
     const { ok, message } = await translateTextUseCase( text, selectedOption )
     setIsLoading(false);
     if ( !ok ) {
       return alert(message);
     }
-
+    //isGpt es la respuesta de openai por eso se establece en true 
     setMessages((prev) => [...prev, { text: message, isGpt: true }]);
   };
 

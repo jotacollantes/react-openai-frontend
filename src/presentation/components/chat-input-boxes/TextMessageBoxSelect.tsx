@@ -26,6 +26,7 @@ export const TextMessageBoxSelect = ({ onSendMessage, placeholder, disableCorrec
     event.preventDefault();
 
     if ( message.trim().length === 0 ) return;
+    //Para validar de que tenga que seleccionar un idioma
     if ( selectedOption === '' ) return;
 
     onSendMessage( message, selectedOption );
