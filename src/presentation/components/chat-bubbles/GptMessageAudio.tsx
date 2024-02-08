@@ -14,7 +14,8 @@ export const GptMessageAudio = ({ text, audio }: Props) => {
         </div>
         <div className="relative ml-3 text-sm bg-black bg-opacity-25 pt-3 pb-2 px-4 shadow rounded-xl">
           <Markdown>{text}</Markdown>
-          <audio 
+          <audio
+            //Para que el usuario tengo los botones de control 
             controls
             src={ audio }
             className="w-full"
