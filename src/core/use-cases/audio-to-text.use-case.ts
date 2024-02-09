@@ -6,6 +6,7 @@ export const audioToTextUseCase = async( audioFile: File, prompt?: string ) => {
   try {
 
     const formData = new FormData();
+    //El backend esta esperando el argumento que se llama file
     formData.append('file', audioFile );
     if ( prompt ) {
       formData.append('prompt', prompt );

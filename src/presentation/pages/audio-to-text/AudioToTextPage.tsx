@@ -25,6 +25,7 @@ export const AudioToTextPage = () => {
 
     if ( !resp ) return; // no hay respuesta...
 
+    //El mensaje sera mostrado en formato markdown
     const gptMessage = `
 ## Transcripción:
 __Duración:__ ${ Math.round( resp.duration )  } segundos
