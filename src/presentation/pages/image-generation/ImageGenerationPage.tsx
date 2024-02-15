@@ -24,7 +24,7 @@ export const ImageGenerationPage = () => {
   const handlePost = async (text: string) => {
     setIsLoading(true);
     setMessages((prev) => [...prev, { text: text, isGpt: false }]);
-
+    //Len enviamos el prompt
     const imageInfo = await imageGenerationUseCase( text );
     setIsLoading(false);
 
@@ -59,7 +59,9 @@ export const ImageGenerationPage = () => {
               <GptMessageImage 
                 key={index} 
                 text={ message.text }
+                // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
                 imageUrl={ message.info?.imageUrl! }
+                // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
                 alt={ message.info?.alt! }
               />
             ) : (
